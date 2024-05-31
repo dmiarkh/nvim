@@ -11,10 +11,10 @@ return {
 
 		vim.keymap.set("n", "<leader>ha", function()
 			harpoon:list():add()
-		end)
+		end, { desc = "Add harpoon" })
 		vim.keymap.set("n", "<leader>hl", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
-		end)
+		end, { desc = "Open harpoon list" })
 
 		vim.keymap.set("n", "<A-a>", function()
 			harpoon:list():select(1)
