@@ -15,7 +15,6 @@ return {
 			["<leader>s"] = { name = "+ Split" },
 			["<leader>p"] = { name = "+ Previous" },
 			["<leader>n"] = { name = "+ Next" },
-			["<leader>h"] = { name = "+ Hunk" },
 			["<leader>x"] = { name = "+ Trouble" },
 		})
 	end,
