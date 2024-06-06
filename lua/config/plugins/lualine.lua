@@ -8,6 +8,7 @@ return {
 		lualine.setup({
 			options = {
 				component_separators = { left = "|", right = "|" },
+				theme = "catppuccin",
 			},
 			sections = {
 				lualine_a = { "mode" },
