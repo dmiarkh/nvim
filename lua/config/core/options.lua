@@ -42,3 +42,6 @@ vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
+
+-- Required by obsidian
+vim.opt.conceallevel = 1
