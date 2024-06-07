@@ -45,5 +45,8 @@ return {
 		vim.keymap.set("n", "<leader>fn", function()
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
 		end, { desc = "Find neovim files" })
+		vim.keymap.set("n", "<leader>fo", function()
+			builtin.find_files({ cwd = "~/Notes/" })
+		end, { desc = "Find neovim files" })
 	end,
 }
