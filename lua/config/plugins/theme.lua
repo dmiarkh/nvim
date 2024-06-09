@@ -12,6 +12,7 @@ return {
 	-- 	-- You can configure highlights by doing something like
 	-- 	-- vim.cmd.hi 'Comment gui=none'
 	-- end,
+
 	"catppuccin/nvim",
 	name = "catppuccin",
 	priority = 1000,
@@ -20,10 +21,10 @@ return {
 			flavour = "mocha",
 			transparent_background = true,
 			integrations = {
-				fidget = true,
-				gitsigns = true,
 				harpoon = true,
 				mason = true,
+				lsp_trouble = true,
+				which_key = true,
 			},
 		})
 		vim.cmd.colorscheme("catppuccin")

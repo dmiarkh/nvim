@@ -6,6 +6,12 @@ return {
 		{
 			"j-hui/fidget.nvim",
 			opts = {
+				-- Notification setting required by catppuccin theme
+				notification = {
+					window = {
+						winblend = 0,
+					},
+				},
 				integration = {
 					["nvim-tree"] = {
 						enable = true,
