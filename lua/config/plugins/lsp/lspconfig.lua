@@ -52,7 +52,7 @@ return {
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
 				opts.desc = "Restart LSP"
-				vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+				vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
 				opts.desc = "Document symbols"
 				vim.keymap.set("n", "<leader>ds", require("telescope.builtin").lsp_document_symbols, opts) -- show lsp type definitions
@@ -98,13 +98,13 @@ return {
 					capabilities = capabilities,
 				})
 			end,
-			["graphql"] = function()
-				-- configure graphql language server
-				lspconfig["graphql"].setup({
-					capabilities = capabilities,
-					filetypes = { "graphql", "gql", "typescriptreact", "javascriptreact" },
-				})
-			end,
+			-- ["graphql"] = function()
+			-- 	-- configure graphql language server
+			-- 	lspconfig["graphql"].setup({
+			-- 		capabilities = capabilities,
+			-- 		filetypes = { "graphql", "gql", "typescriptreact", "javascriptreact" },
+			-- 	})
+			-- end,
 			["emmet_ls"] = function()
 				-- configure emmet language server
 				lspconfig["emmet_ls"].setup({
