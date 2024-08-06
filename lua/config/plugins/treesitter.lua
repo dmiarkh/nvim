@@ -1,56 +1,61 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPre", "BufNewFile" },
-	build = ":TSUpdate",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		"nvim-treesitter/nvim-treesitter-context",
-	},
-	config = function()
-		require("nvim-treesitter.configs").setup({
-			highlight = {
-				enable = true,
-			},
-			indent = { enable = true },
-			ensure_installed = {
-				"json",
-				"javascript",
-				"typescript",
-				"tsx",
-				"yaml",
-				"html",
-				"css",
-				"scss",
-				"prisma",
-				"markdown",
-				"markdown_inline",
-				"graphql",
-				"bash",
-				"lua",
-				"vim",
-				"dockerfile",
-				"gitignore",
-				"query",
-				"vimdoc",
-				"hyprlang",
-			},
-			auto_install = true,
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-				},
-			},
-			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-					keymaps = {
-						["af"] = "@function.outer",
-						["if"] = "@function.inner",
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPre", "BufNewFile" },
+    build = ":TSUpdate",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        "nvim-treesitter/nvim-treesitter-context",
+    },
+    config = function()
+        require("nvim-treesitter.configs").setup({
+            highlight = {
+                enable = true,
+            },
+            indent = { enable = true },
+            ensure_installed = {
+                "bash",
+                "css",
+                "dockerfile",
+                "gitignore",
+                "graphql",
+                "html",
+                "hyprlang",
+                "javascript",
+                "json",
+                "lua",
+                "luadoc",
+                "markdown",
+                "markdown_inline",
+                "prisma",
+                "query",
+                "regex",
+                "scss",
+                "sql",
+                "toml",
+                "tsv",
+                "tsx",
+                "typescript",
+                "vim",
+                "vimdoc",
+                "yaml",
+            },
+            auto_install = true,
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "<C-space>",
+                    node_incremental = "<C-space>",
+                    scope_incremental = false,
+                    node_decremental = "<bs>",
+                },
+            },
+            textobjects = {
+                select = {
+                    enable = true,
+                    lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+                    keymaps = {
+                        ["af"] = "@function.outer",
+                        ["if"] = "@function.inner",
 
 						["ab"] = "@block.outer",
 						["ib"] = "@block.inner",
@@ -129,3 +134,4 @@ return {
 		pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 	}),
 }
+

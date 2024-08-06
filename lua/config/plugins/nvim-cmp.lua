@@ -4,11 +4,11 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
-		{
-			"L3MON4D3/LuaSnip",
-			version = "v2.*",
-			build = "make install_jsregexp",
-		},
+		-- {
+		-- 	"L3MON4D3/LuaSnip",
+		-- 	version = "v2.*",
+		-- 	build = "make install_jsregexp",
+		-- },
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"rafamadriz/friendly-snippets", -- useful snippets
 		"hrsh7th/cmp-nvim-lsp",
@@ -16,11 +16,11 @@ return {
 	},
 	config = function()
 		local cmp = require("cmp")
-		local luasnip = require("luasnip")
+		-- local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
 
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-		require("luasnip.loaders.from_vscode").lazy_load()
+		require("vim.snippet.loaders.from_vscode").lazy_load()
 
 		cmp.setup({
 			completion = {
@@ -28,7 +28,8 @@ return {
 			},
 			snippet = { -- configure how nvim-cmp interacts with snippet engine
 				expand = function(args)
-					luasnip.lsp_expand(args.body)
+					-- luasnip.lsp_expand(args.body)
+					vim.snippet.expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -41,23 +42,24 @@ return {
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
 
 				["<C-l>"] = cmp.mapping(function()
-					if luasnip.expand_or_locally_jumpable() then
-						luasnip.expand_or_jump()
+					if vim.snippet.expand_or_locally_jumpable() then
+						vim.snippet.expand_or_jump()
 					end
 				end, { "i", "s" }),
 				["<C-h>"] = cmp.mapping(function()
-					if luasnip.locally_jumpable(-1) then
-						luasnip.jump(-1)
+					if vim.snippet.locally_jumpable(-1) then
+						vim.snippet.jump(-1)
 					end
 				end, { "i", "s" }),
 			}),
 			-- sources for autocompletion
-			sources = cmp.config.sources({
+			-- TODO: get rid of useless snippets / configure my own
+			sources = {
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" }, -- snippets
+				-- { name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
-			}),
+			},
 
 			-- configure lspkind for vs-code like pictograms in completion menu
 			formatting = {

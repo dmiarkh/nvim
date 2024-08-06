@@ -1,35 +1,41 @@
 return {
-	"nvim-telescope/telescope.nvim",
-	event = "VimEnter",
-	branch = "0.1.x",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		"nvim-tree/nvim-web-devicons",
-		"nvim-telescope/telescope-ui-select.nvim",
-		"folke/todo-comments.nvim",
-	},
-	config = function()
-		require("telescope").setup({
-			defaults = {
-				path_display = { "smart" },
-				file_ignore_patterns = {
-					"node%_modules/.*",
-				},
-			},
-		})
+    "nvim-telescope/telescope.nvim",
+    event = "VimEnter",
+    branch = "0.1.x",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = function() return vim.fn.executable 'make' == 1 end },
+        "nvim-tree/nvim-web-devicons",
+        "nvim-telescope/telescope-ui-select.nvim",
+        "folke/todo-comments.nvim",
+    },
+    config = function()
+        require("telescope").setup({
+            defaults = {
+                path_display = { "smart" },
+                file_ignore_patterns = {
+                    "node%_modules/.*",
+                },
+                sorting_strategy = "ascending",
+                layout_config = {
+                    horizontal = {
+                        prompt_position = "top"
+                    }
+                }
+            },
+        })
 
-		local open_with_trouble = require("trouble.sources.telescope").open
-		local telescope = require("telescope")
+		-- local open_with_trouble = require("trouble.sources.telescope").open
+		-- local telescope = require("telescope")
 
-		telescope.setup({
-			defaults = {
-				mappings = {
-					i = { ["<c-t>"] = open_with_trouble },
-					n = { ["<c-t>"] = open_with_trouble },
-				},
-			},
-		})
+		-- telescope.setup({
+		-- 	defaults = {
+		-- 		mappings = {
+		-- 			i = { ["<c-t>"] = open_with_trouble },
+		-- 			n = { ["<c-t>"] = open_with_trouble },
+		-- 		},
+		-- 	},
+		-- })
 
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("ui-select")
@@ -42,7 +48,7 @@ return {
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
 		vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find word" })
 		vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Find resume" })
-		vim.keymap.set("n", "<leader>fi", builtin.git_files, { desc = "Fing git" })
+		vim.keymap.set("n", "<leader>fi", builtin.git_files, { desc = "Find git" })
 		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Find diagnostics" })
 		vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find keymaps" })
 		vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todos" })

@@ -39,7 +39,7 @@ return {
 				"cssls",
 				"tailwindcss",
 				"lua_ls",
-				"graphql",
+				-- "graphql",
 				"emmet_ls",
 				"prismals",
 				"bashls",
@@ -51,6 +51,9 @@ return {
 				"prettierd",
 				"stylua",
 				"eslint_d",
+				"isort",
+				"black",
+				"pylint",
 			},
 		})
 	end,

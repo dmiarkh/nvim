@@ -81,7 +81,7 @@ return {
 		})
 
 		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
