@@ -28,19 +28,18 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Folds
--- vim.o.foldenable = true
--- vim.o.foldcolumn = "1"
--- vim.o.foldlevelstart = 99
--- vim.o.foldlevel = 99
--- vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.foldenable = true
+vim.o.foldcolumn = "1"
+vim.o.foldlevelstart = 99
+vim.o.foldlevel = 99
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 400
 
 -- Required by obsidian
 vim.opt.conceallevel = 1
 
-
--- with autopair? 
+-- with autopair?
 -- vim.opt.showmatch = true
 vim.opt.synmaxcol = 512

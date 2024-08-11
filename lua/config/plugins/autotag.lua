@@ -1,6 +1,5 @@
 return {
-    "lukas-reineke/indent-blankline.nvim",
+    "windwp/nvim-ts-autotag",
     event = { "BufReadPre", "BufNewFile" },
-    main = "ibl",
     opts = {},
 }
