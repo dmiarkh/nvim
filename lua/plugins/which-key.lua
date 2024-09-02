@@ -1,0 +1,44 @@
+return {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts_extend = { "spec" },
+    opts = {
+        preset = "modern",
+        delay = 800,
+        spec = {
+            {
+                mode = { "n", "v" },
+                { "<leader>c", group = "Code" },
+                { "<leader>f", group = "Find" },
+                { "<leader>e", group = "File Explorer" },
+                { "<leader>g", group = "Git" },
+                { "<leader>r", group = "Rename", icon = { icon = "", color = "azure" } },
+                { "<leader>gh", group = "Hunks" },
+                { "<leader>q", hidden = true },
+                { "<leader>st", hidden = true },
+                { "<leader>sT", hidden = true },
+                { "<leader>ub", hidden = true },
+                { "<leader>ul", hidden = true },
+                { "<leader>ub", hidden = true },
+                { "<leader>ud", hidden = true },
+                { "<leader>uT", hidden = true },
+                { "<leader>s", hidden = true },
+                { "<leader>n", group = "Noice" },
+                { "<leader>u", group = "UI", icon = { icon = "󰙵 ", color = "cyan" } },
+                { "<leader>x", group = "Quickfix", icon = { icon = "󱖫 ", color = "green" } },
+                { "<leader>-", group = "Close oil" },
+                {
+                    "<leader>b",
+                    hidden = true,
+                },
+                {
+                    "<leader>w",
+                    hidden = true,
+                },
+            },
+        },
+    },
+    keys = function()
+        return {}
+    end,
+}

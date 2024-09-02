@@ -1,20 +1,70 @@
-vim.keymap.set("n", "<Esc>", "<CMD>nohlsearch<CR>")
+vim.keymap.del("n", "<S-h>")
+vim.keymap.del("n", "<leader>ur")
+vim.keymap.del("n", "n")
+vim.keymap.del("x", "n")
+vim.keymap.del("o", "n")
+vim.keymap.del("n", "N")
+vim.keymap.del("x", "N")
+vim.keymap.del("o", "N")
+vim.keymap.del({ "i", "x", "n", "s" }, "<C-s>")
+vim.keymap.del("n", "<leader>K")
+vim.keymap.del("n", "<leader>l")
+vim.keymap.del("n", "<leader>fn")
+vim.keymap.del("n", "<leader>xl")
+vim.keymap.del({ "n", "v" }, "<leader>cf")
+vim.keymap.del("n", "<leader>qq")
+vim.keymap.del("n", "<leader>ui")
+vim.keymap.del("n", "<leader>uI")
+vim.keymap.del("n", "<leader>ft")
+vim.keymap.del("n", "<leader>fT")
+vim.keymap.del("n", "<c-/>")
+vim.keymap.del("n", "<c-_>")
+vim.keymap.del("n", "<leader><tab>l")
+vim.keymap.del("n", "<leader><tab>o")
+vim.keymap.del("n", "<leader><tab>f")
+vim.keymap.del("n", "<leader><tab><tab>")
+vim.keymap.del("n", "<leader><tab>]")
+vim.keymap.del("n", "<leader><tab>d")
+vim.keymap.del("n", "<leader><tab>[")
+vim.keymap.del("n", "<leader>w")
+vim.keymap.del("n", "<leader>-")
+vim.keymap.del("n", "<leader>|")
+vim.keymap.del("n", "<leader>wd")
+vim.keymap.del("n", "<S-l>")
+vim.keymap.del("n", "[b")
+vim.keymap.del("n", "]b")
+vim.keymap.del("n", "<leader>bb")
+vim.keymap.del("n", "<leader>`")
+vim.keymap.del("n", "<leader>bd")
+vim.keymap.del("n", "<leader>bD")
+vim.keymap.del("n", "<leader>uL")
+vim.keymap.del("n", "<leader>ud")
+vim.keymap.del("n", "<leader>ul")
+vim.keymap.del("n", "<leader>uT")
+vim.keymap.del("n", "<leader>ub")
+vim.keymap.del("n", "<leader>wm")
+vim.keymap.del("n", "<leader>gg")
+vim.keymap.del("n", "<leader>gG")
+vim.keymap.del("n", "<leader>gb")
+vim.keymap.del("n", "<leader>gB")
+vim.keymap.del("n", "<leader>gf")
+vim.keymap.del("n", "<leader>gl")
+vim.keymap.del("n", "<leader>gL")
+vim.keymap.del("n", "<leader>cd")
 
--- Splits
-vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split vertically" })
-vim.keymap.set("n", "<leader>sx", "<CMD>close<CR>", { desc = "Close split" })
+local map = LazyVim.safe_keymap_set
+map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
--- Quickfix
-vim.keymap.set("n", "<leader>qn", "<CMD>cnext<CR>", { desc = "Next quickfix" })
-vim.keymap.set("n", "<leader>qp", "<CMD>cprev<CR>", { desc = "Previous quickfix" })
+-- mine
+map("v", "p", '"_dP')
 
--- Paste without replacing paste buffer
-vim.keymap.set("v", "p", '"_dP')
-
--- Move single line
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
-
--- Move multiple lines in visual mode
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+-- toggle options
+LazyVim.toggle.map("<leader>us", LazyVim.toggle("spell", { name = "Spelling" }))
+LazyVim.toggle.map("<leader>uw", LazyVim.toggle("wrap", { name = "Wrap" }))
+LazyVim.toggle.map(
+    "<leader>uc",
+    LazyVim.toggle("conceallevel", { values = { 0, vim.o.conceallevel > 0 and vim.o.conceallevel or 2 } })
+)
+if vim.lsp.inlay_hint then
+    LazyVim.toggle.map("<leader>uh", LazyVim.toggle.inlay_hints)
+end

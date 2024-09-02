@@ -1,45 +1,26 @@
-vim.opt.termguicolors = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.scrolloff = 13
-vim.opt.cursorline = true
-vim.opt.signcolumn = "yes"
-vim.opt.clipboard:append("unnamedplus")
-vim.opt.mouse = "a"
-vim.opt.showmode = false
-vim.opt.breakindent = true
-vim.opt.undofile = true
-vim.opt.wrap = false
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
 
--- Tabs
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.autoindent = true
+-- Options for the LazyVim statuscolumn
+vim.g.lazyvim_statuscolumn = {
+    folds_open = false, -- show fold sign when fold is open
+    folds_githl = false, -- highlight fold sign with git sign color
+    -- TODO: highlight when opens
+}
 
--- Search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.inccommand = "split"
+local opt = vim.opt
 
--- Splits
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+opt.scrolloff = 13 -- Lines of context
+opt.shiftwidth = 4 -- Size of an indent
+opt.tabstop = 4 -- Number of spaces tabs count for
+opt.softtabstop = 4
+opt.autoindent = true
+opt.timeoutlen = 400
+opt.synmaxcol = 512
+opt.completeopt = "menu,menuone,noinsert"
+-- Popup transparancy
+opt.pumblend = 0
 
--- Folds
-vim.o.foldenable = true
-vim.o.foldcolumn = "1"
-vim.o.foldlevelstart = 99
-vim.o.foldlevel = 99
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 400
-
--- Required by obsidian
-vim.opt.conceallevel = 1
-
--- with autopair?
--- vim.opt.showmatch = true
-vim.opt.synmaxcol = 512
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
