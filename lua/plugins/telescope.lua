@@ -81,7 +81,7 @@ return {
                     desc = "Find Buffers",
                 },
                 {
-                    "<leader>fn",
+                    "<leader>fc",
                     function()
                         require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
                     end,

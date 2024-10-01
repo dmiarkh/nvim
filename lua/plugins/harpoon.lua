@@ -14,11 +14,6 @@ return {
         local harpoon = require("harpoon")
         local keys = {
             {
-                "<leader>h",
-                function() end,
-                desc = "Harpoon",
-            },
-            {
                 "<leader>ha",
                 function()
                     require("harpoon"):list():add()

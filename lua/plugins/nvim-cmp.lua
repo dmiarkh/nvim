@@ -6,6 +6,8 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
+        "luckasRanarison/tailwind-tools.nvim",
+        "onsails/lspkind-nvim",
     },
     -- Not all LSP servers add brackets when completing a function.
     -- To better deal with this, LazyVim adds a custom option to cmp,
@@ -45,6 +47,9 @@ return {
                 documentation = cmp.config.window.bordered(),
             },
             formatting = {
+                -- format = require("lspkind").cmp_format({
+                --     before = require("tailwind-tools.cmp").lspkind_format,
+                -- }),
                 format = function(entry, item)
                     local icons = LazyVim.config.icons.kinds
                     if icons[item.kind] then

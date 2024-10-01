@@ -38,7 +38,4 @@ return {
             },
         },
     },
-    keys = function()
-        return {}
-    end,
 }

@@ -20,5 +20,6 @@ return {
             },
         },
         new_notes_location = "current_dir",
+        ui = { enable = false },
     },
 }
