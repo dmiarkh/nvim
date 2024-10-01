@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     opts = {
         preset = "modern",
-        delay = 600,
+        delay = 700,
         spec = {
             { "<leader>f", group = "Find" },
             { "<leader>e", group = "File Explorer" },
@@ -12,15 +12,14 @@ return {
                 group = "Split",
                 icon = { icon = "", color = "green" },
             },
+            { "<leader>u", group = "UI", icon = { icon = "󰙵 ", color = "cyan" } },
+            { "<leader>p", group = "Session" },
+            { "<leader>q", group = "Quickfix" },
             { "<leader>c", group = "Code" },
-            { "<leader>u", desc = "Undo tree", icon = { icon = "", color = "red" } },
-            { "<leader>-", desc = "Close Oil", icon = { icon = "", color = "red" } },
+            { "<leader>U", desc = "Undo tree", icon = { icon = "", color = "red" } },
             { "<leader>g", group = "Git" },
-            { "<leader>gh", group = "Hunk" },
             { "<leader>h", group = "Harpoon", icon = { icon = "⇁", color = "yellow" } },
-            { "<leader>p", group = "Previous", icon = "" },
-            { "<leader>n", group = "Next", icon = "" },
-            { "<leader>q", group = "Quickfix", icon = { icon = "", color = "cyan" } },
+            -- TODO: check lazyvim icons
             { "<leader>x", group = "Trouble", icon = { icon = "", color = "orange" } },
             { "<leader>r", desc = "Rename", icon = { icon = "", color = "azure" } },
             { "<leader>d", group = "Document", icon = { icon = "", color = "green" } },
@@ -33,7 +32,7 @@ return {
             function()
                 require("which-key").show({ global = false })
             end,
-            desc = "Buffer Local Keymaps (which-key)",
+            desc = "Which-key keymaps",
         },
     },
 }

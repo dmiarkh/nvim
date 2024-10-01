@@ -1,8 +1,28 @@
 return {
     "kevinhwang91/nvim-ufo",
-    dependencies = "kevinhwang91/promise-async",
-    event = "VeryLazy",
-    config = function()
+    dependencies = {
+        "kevinhwang91/promise-async",
+        {
+            "luukvbaal/statuscol.nvim",
+            opts = function()
+                local builtin = require("statuscol.builtin")
+                return {
+                    segments = {
+                        { text = { "%s" }, click = "v:lua.scsa" },
+                        { text = { builtin.lnumfunc }, click = "v:lua.scla" },
+                        {
+                            text = { " ", builtin.foldfunc, " " },
+                            condition = { builtin.not_empty, true, builtin.not_empty },
+                            click = "v:lua.scfa",
+                        },
+                    },
+                }
+            end,
+        },
+    },
+
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    opts = function()
         local handler = function(virtText, lnum, endLnum, width, truncate)
             local newVirtText = {}
             local suffix = (" 󰁂 %d "):format(endLnum - lnum)
@@ -31,7 +51,7 @@ return {
             return newVirtText
         end
 
-        require("ufo").setup({
+        return {
             open_fold_hl_timeout = 100,
             provider_selector = function()
                 return { "treesitter", "indent" }
@@ -43,6 +63,6 @@ return {
             close_fold_kinds_for_ft = {
                 default = { default = {} },
             },
-        })
+        }
     end,
 }

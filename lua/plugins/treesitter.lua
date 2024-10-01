@@ -1,32 +1,45 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
+    version = false,
     build = ":TSUpdate",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-context",
     },
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    keys = {
+        { "<c-space>", desc = "Increment Selection" },
+        { "<bs>", desc = "Decrement Selection", mode = "x" },
+    },
     config = function()
+        ---@diagnostic disable-next-line: missing-fields
         require("nvim-treesitter.configs").setup({
-            highlight = {
-                enable = true,
-            },
+            highlight = { enable = true },
             indent = { enable = true },
             ensure_installed = {
                 "bash",
+                "c",
                 "css",
+                "diff",
                 "dockerfile",
                 "gitignore",
                 "graphql",
                 "html",
                 "hyprlang",
                 "javascript",
+                "jsdoc",
                 "json",
+                "jsonc",
                 "lua",
                 "luadoc",
+                "luap",
                 "markdown",
                 "markdown_inline",
+                "printf",
                 "prisma",
+                "python",
                 "query",
                 "regex",
                 "scss",
@@ -37,9 +50,10 @@ return {
                 "typescript",
                 "vim",
                 "vimdoc",
+                "xml",
                 "yaml",
             },
-            auto_install = true,
+            autoinstall = true,
             incremental_selection = {
                 enable = true,
                 keymaps = {
@@ -50,70 +64,49 @@ return {
                 },
             },
             textobjects = {
-                select = {
-                    enable = true,
-                    lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-                    keymaps = {
-                        ["af"] = "@function.outer",
-                        ["if"] = "@function.inner",
-
-                        ["aa"] = "@parameter.outer",
-                        ["ia"] = "@parameter.inner",
-
-                        ["m"] = "@assignment.lhs",
-                        ["M"] = "@assignment.rhs",
-
-                        ["ai"] = "@conditional.outer",
-                        ["ii"] = "@conditional.inner",
-
-                        ["al"] = "@loop.outer",
-                        ["il"] = "@loop.inner",
-                    },
-                },
+                -- NOTE: check out better textobjects plugin
                 move = {
                     enable = true,
-                    set_jumps = true,
                     goto_next_start = {
                         ["]f"] = "@function.outer",
+                        ["]c"] = "@class.outer",
+                        ["]a"] = "@parameter.inner",
                     },
                     goto_next_end = {
                         ["]F"] = "@function.outer",
+                        ["]C"] = "@class.outer",
+                        ["]A"] = "@parameter.inner",
                     },
                     goto_previous_start = {
                         ["[f"] = "@function.outer",
+                        ["[c"] = "@class.outer",
+                        ["[a"] = "@parameter.inner",
                     },
                     goto_previous_end = {
                         ["[F"] = "@function.outer",
+                        ["[C"] = "@class.outer",
+                        ["[A"] = "@parameter.inner",
                     },
                 },
-                swap = {
+                select = {
                     enable = true,
-                    swap_next = {
-                        ["<leader>na"] = "@parameter.inner",
-                        ["<leader>nf"] = "@function.outer",
-                    },
-                    swap_previous = {
-                        ["<leader>pa"] = "@parameter.inner",
-                        ["<leader>pf"] = "@function.outer",
+                    lookahead = true,
+                    keymaps = {
+                        ["af"] = "@function.outer",
+                        ["if"] = "@function.inner",
+                        ["ac"] = "@class.outer",
                     },
                 },
             },
-        })
 
+            vim.filetype.add({
+                pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+            }),
+        })
         require("treesitter-context").setup({
-            event = "VeryLazy",
-            enable = true,
+            event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
             max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
-            min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-            line_numbers = true,
             multiline_threshold = 2, -- Maximum number of lines to show for a single context
-            trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-            mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
-            -- Separator between context and content. Should be a single character string, like '-'.
-            -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-            separator = nil,
-            zindex = 20, -- The Z-index of the context window
-            on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
         })
 
         local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
@@ -126,8 +119,4 @@ return {
         vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
         vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
     end,
-
-    vim.filetype.add({
-        pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
-    }),
 }
