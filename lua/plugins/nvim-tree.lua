@@ -1,6 +1,5 @@
 return {
     "nvim-tree/nvim-tree.lua",
-    event = "VeryLazy",
     keys = {
         { "<leader>eo", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file explorer" },
         { "<leader>ef", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Toggle file explorer on current file" },

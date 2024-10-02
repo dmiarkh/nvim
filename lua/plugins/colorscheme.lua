@@ -9,7 +9,6 @@ return {
             integrations = {
                 cmp = true,
                 dashboard = true,
-                fidget = true,
                 gitsigns = true,
                 harpoon = true,
                 indent_blankline = { enabled = true },

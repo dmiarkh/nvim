@@ -4,22 +4,6 @@ return {
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        {
-            "j-hui/fidget.nvim",
-            opts = {
-                -- Notification setting required by catppuccin theme
-                notification = {
-                    window = {
-                        winblend = 0,
-                    },
-                },
-                integration = {
-                    ["nvim-tree"] = {
-                        enable = true,
-                    },
-                },
-            },
-        },
         "williamboman/mason-lspconfig.nvim",
         -- NOTE: see if this is needed (look for rename logs in :messages)
         -- { "antosha417/nvim-lsp-file-operations", opts = {} },

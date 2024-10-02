@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     opts = {
         preset = "modern",
-        delay = 700,
+        delay = 1000,
         spec = {
             { "<leader>f", group = "Find" },
             { "<leader>e", group = "File Explorer" },
