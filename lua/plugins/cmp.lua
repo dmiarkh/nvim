@@ -9,14 +9,14 @@ return {
             version = "v2.*",
             build = "make install_jsregexp",
         },
-        -- NOTE: check these
-        "saadparwaiz1/cmp_luasnip", -- for autocompletion
-        "rafamadriz/friendly-snippets", -- useful snippets
-        -- NOTE: see if I can replace lspkind with my own icons
-        "onsails/lspkind.nvim", -- vs-code like pictograms
+        "saadparwaiz1/cmp_luasnip",
+        "rafamadriz/friendly-snippets",
+        "onsails/lspkind.nvim",
     },
+
     opts = function()
         local cmp = require("cmp")
+        local luasnip = require("luasnip")
 
         require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -37,18 +37,28 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.abort(),
                 ["<C-y>"] = cmp.mapping.confirm({ select = false }),
+                ["<C-l>"] = cmp.mapping(function()
+                    if luasnip.expand_or_locally_jumpable() then
+                        luasnip.expand_or_jump()
+                    end
+                end, { "i", "s" }),
+                ["<C-h>"] = cmp.mapping(function()
+                    if luasnip.locally_jumpable(-1) then
+                        luasnip.jump(-1)
+                    end
+                end, { "i", "s" }),
             }),
 
             sources = cmp.config.sources({
-                { name = "nvim_lsp"},
-                { name = "luasnip" },
+                { name = "nvim_lsp" },
                 { name = "buffer" },
                 { name = "path" },
+                { name = "luasnip" },
             }),
 
             ---@diagnostic disable-next-line: missing-fields
             formatting = {
-                format = require('lspkind').cmp_format({
+                format = require("lspkind").cmp_format({
                     maxwidth = 50,
                     ellipsis_char = "...",
                 }),
