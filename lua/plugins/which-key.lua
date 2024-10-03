@@ -1,25 +1,24 @@
 return {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    dependencies = {
+        "echasnovski/mini.icons",
+    },
     opts = {
         preset = "modern",
         delay = 1000,
         spec = {
             { "<leader>f", group = "Find" },
             { "<leader>e", group = "File Explorer" },
-            {
-                "<leader>s",
-                group = "Split",
-                icon = { icon = "", color = "green" },
-            },
+            { "<leader>s", group = "Split", icon = { icon = "", color = "green" } },
             { "<leader>u", group = "UI", icon = { icon = "󰙵 ", color = "cyan" } },
             { "<leader>p", group = "Session" },
             { "<leader>q", group = "Quickfix" },
             { "<leader>c", group = "Code" },
+            { "<leader>n", group = "Noice" },
             { "<leader>U", desc = "Undo tree", icon = { icon = "", color = "red" } },
             { "<leader>g", group = "Git" },
-            { "<leader>h", group = "Harpoon", icon = { icon = "⇁", color = "yellow" } },
-            -- TODO: check lazyvim icons
+            { "<leader>h", group = "Harpoon", icon = { icon = "󱡀", color = "cyan" } },
             { "<leader>x", group = "Trouble", icon = { icon = "", color = "orange" } },
             { "<leader>r", desc = "Rename", icon = { icon = "", color = "azure" } },
             { "<leader>d", group = "Document", icon = { icon = "", color = "green" } },

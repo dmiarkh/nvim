@@ -61,8 +61,5 @@ vim.opt.signcolumn = "yes"
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 --(from lazy) opt.fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " ", }
 
--- Required by obsidian
--- vim.opt.conceallevel = 1
-
 -- with autopair?
 -- vim.opt.showmatch = true
