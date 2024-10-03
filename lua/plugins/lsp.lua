@@ -5,11 +5,11 @@ return {
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
         "williamboman/mason-lspconfig.nvim",
-        -- NOTE: see if this is needed (look for rename logs in :messages)
-        -- { "antosha417/nvim-lsp-file-operations", opts = {} },
+        { "antosha417/nvim-lsp-file-operations", opts = {} },
     },
     config = function()
         local lspconfig = require("lspconfig")
+        local border = "rounded"
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -59,7 +59,6 @@ return {
                 opts.desc = "Signature help"
                 vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, opts)
 
-                -- TODO: remove the no information found message (in ts files)
                 opts.desc = "Show documentation for what is under cursor"
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
@@ -98,7 +97,7 @@ return {
             },
             severity_sort = true,
             float = {
-                border = "rounded",
+                border = border,
             },
             inlay_hints = {
                 enabled = true,
@@ -124,23 +123,32 @@ return {
         capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
         -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+        -- LSP settings (for overriding per client)
+        local handlers = {
+            ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+            ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+        }
+
         require("mason-lspconfig").setup_handlers({
             -- NOTE: organize imports fot ts
             function(server_name)
                 lspconfig[server_name].setup({
                     capabilities = capabilities,
+                    handlers = handlers,
                 })
             end,
             ["emmet_ls"] = function()
                 lspconfig["emmet_ls"].setup({
                     -- TODO: do something with the noise
                     capabilities = capabilities,
+                    handlers = handlers,
                     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
                 })
             end,
             ["lua_ls"] = function()
                 lspconfig["lua_ls"].setup({
                     capabilities = capabilities,
+                    handlers = handlers,
                     settings = {
                         Lua = {
                             diagnostics = {
