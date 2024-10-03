@@ -1,7 +1,7 @@
 return {
     "epwalsh/obsidian.nvim",
     version = "*",
-    lazy = true,
+    cmd = "ObsidianNew",
     event = {
         "BufReadPre /home/arch/Notes/**.md",
         "BufNewFile /home/arch/Notes/**.md",
