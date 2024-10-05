@@ -32,7 +32,7 @@ return {
                 "prismals",
                 "tailwindcss",
                 "tailwindcss",
-                "vtsls",
+                -- "vtsls",
                 -- "graphql",
             },
         },
