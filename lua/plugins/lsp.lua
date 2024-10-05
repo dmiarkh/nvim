@@ -137,7 +137,6 @@ return {
         )
 
         require("mason-lspconfig").setup_handlers({
-            -- NOTE: organize imports fot ts
             function(server_name)
                 lspconfig[server_name].setup({
                     capabilities = capabilities,
