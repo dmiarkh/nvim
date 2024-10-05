@@ -64,7 +64,6 @@ return {
                 },
             },
             textobjects = {
-                -- NOTE: check out better textobjects plugin
                 move = {
                     enable = true,
                     goto_next_start = {
@@ -92,9 +91,37 @@ return {
                     enable = true,
                     lookahead = true,
                     keymaps = {
-                        ["af"] = "@function.outer",
                         ["if"] = "@function.inner",
+                        ["af"] = "@function.outer",
+
+                        ["ic"] = "@class.inner",
                         ["ac"] = "@class.outer",
+
+                        ["ib"] = "@block.inner",
+                        ["ab"] = "@block.outer",
+
+                        ["ia"] = "@parameter.inner",
+                        ["aa"] = "@parameter.outer",
+
+                        ["i="] = "@assignment.lhs",
+                        ["a="] = "@assignment.rhs",
+
+                        ["ii"] = "@conditional.inner",
+                        ["ai"] = "@conditional.outer",
+
+                        ["il"] = "@loop.inner",
+                        ["al"] = "@loop.outer",
+                    },
+                },
+                swap = {
+                    enable = true,
+                    swap_next = {
+                        ["<leader>a"] = "@parameter.inner",
+                        ["<leader>m"] = "@function.outer",
+                    },
+                    swap_previous = {
+                        ["<leader>A"] = "@parameter.inner",
+                        ["<leader>M"] = "@function.outer",
                     },
                 },
             },
