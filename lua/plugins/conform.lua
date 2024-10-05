@@ -3,10 +3,9 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     cmd = "ConformInfo",
     opts = function()
-        vim.keymap.set({ "n", "v" }, "<leader>cf", function()
-            -- FIX: doesn't work
-            require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
-        end, { desc = "Format file or range" })
+        vim.keymap.set("n", "<leader>cf", function()
+            require("conform").format({ async = false, timeout_ms = 3000, lsp_format = "fallback" })
+        end, { desc = "Format code" })
         return {
             default_format_opts = {
                 timeout_ms = 3000,
