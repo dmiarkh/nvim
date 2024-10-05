@@ -129,6 +129,13 @@ return {
             ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
         }
 
+        vim.keymap.set(
+            "n",
+            "<leader>ce",
+            "<cmd>LspStart emmet_language_server<cr>",
+            { noremap = true, silent = true, desc = "Start emmet_ls" }
+        )
+
         require("mason-lspconfig").setup_handlers({
             -- NOTE: organize imports fot ts
             function(server_name)
@@ -137,12 +144,12 @@ return {
                     handlers = handlers,
                 })
             end,
-            ["emmet_ls"] = function()
-                lspconfig["emmet_ls"].setup({
-                    -- TODO: do something with the noise
+            ["emmet_language_server"] = function()
+                lspconfig["emmet_language_server"].setup({
                     capabilities = capabilities,
                     handlers = handlers,
                     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+                    autostart = false,
                 })
             end,
             ["lua_ls"] = function()

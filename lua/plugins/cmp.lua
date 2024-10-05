@@ -50,17 +50,31 @@ return {
             }),
 
             sources = cmp.config.sources({
-                { name = "nvim_lsp" },
-                { name = "buffer" },
-                { name = "path" },
-                { name = "luasnip" },
+                { name = "nvim_lsp", priority = 1000 },
+                { name = "luasnip", priority = 500 },
+                { name = "buffer", priority = 300 },
+                { name = "path", priority = 300 },
             }),
-
             ---@diagnostic disable-next-line: missing-fields
             formatting = {
                 format = require("lspkind").cmp_format({
                     maxwidth = 50,
                     ellipsis_char = "...",
+                    -- Provide my own icons with kind_icons table, adding the cmp source
+                    --
+                    -- format = function(entry, vim_item)
+                    -- Kind icons
+                    -- 	vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+                    -- 	-- Source
+                    -- 	vim_item.menu = ({
+                    -- 		buffer = "[Buffer]",
+                    -- 		nvim_lsp = "[LSP]",
+                    -- 		luasnip = "[LuaSnip]",
+                    -- 		nvim_lua = "[Lua]",
+                    -- 		latex_symbols = "[LaTeX]",
+                    -- 	})[entry.source.name]
+                    -- 	return vim_item
+                    -- end,
                 }),
             },
         }
