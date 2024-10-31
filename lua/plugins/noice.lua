@@ -2,6 +2,9 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
+        cmdline = {
+            view = "cmdline",
+        },
         lsp = {
             override = {
                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -17,6 +20,8 @@ return {
                         { find = "%d+L, %d+B" },
                         { find = "; after #%d+" },
                         { find = "; before #%d+" },
+                        { find = "%d lines moved" },
+                        { find = "%d lines indented" },
                     },
                 },
             },
