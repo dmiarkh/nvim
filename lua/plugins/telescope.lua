@@ -24,7 +24,7 @@ return {
         { "<leader>fi", "<cmd>Telescope git_files<cr>", desc = "Find Files (git)", },
         { "<leader>f:", "<cmd>Telescope command_history<cr>", desc = "Find Command history", },
         { '<leader>f"', "<cmd>Telescope registers<cr>", desc = "Find Registers", },
-        { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Find Buffers", },
+        { "<leader>fb", "<cmd>Telescope buffers sort_mru=true initial_mode=normal sort_lastused=true<cr>", desc = "Find Buffers", },
         { "<leader>fc", function() require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Neovim Files", },
         { "<leader>fo", function() require("telescope.builtin").find_files({ cwd = "~/Notes/" }) end, desc = "Find Notes", },
         -- stylua: ignore end
@@ -61,10 +61,11 @@ return {
                     },
                     n = {
                         ["<c-t>"] = open_with_trouble,
+                        ["x"] = require("telescope.actions").delete_buffer,
                     },
                 },
-                pickers = {
-                    find_files = {
+                find_files = {
+                    pickers = {
                         find_command = { "rg", "--files", "--color", "never", "-g", "!.git" },
                     },
                 },
