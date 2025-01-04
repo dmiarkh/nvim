@@ -25,7 +25,6 @@ return {
                         information = { "undercurl" },
                     },
                 },
-                -- NOTE: diffview?
                 nvimtree = true,
                 noice = true,
                 ufo = true,
