@@ -50,10 +50,14 @@ return {
                 vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
                 opts.desc = "Go to previous diagnostic"
-                vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+                vim.keymap.set("n", "[d", function()
+                    vim.diagnostic.jump({ count = -1, float = true })
+                end, opts)
 
                 opts.desc = "Go to next diagnostic"
-                vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+                vim.keymap.set("n", "]d", function()
+                    vim.diagnostic.jump({ count = 1, float = true })
+                end, opts)
 
                 opts.desc = "Signature help"
                 vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, opts)
@@ -61,11 +65,11 @@ return {
                 opts.desc = "Show documentation for what is under cursor"
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-                -- TODO: setup vstls for inlay hints and check if this works
-                opts.desc = "Toggle inlay hints"
-                vim.keymap.set("n", "<leader>uh", function()
-                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }))
-                end, opts)
+                -- setup vstls for inlay hints and check if this works
+                -- opts.desc = "Toggle inlay hints"
+                -- vim.keymap.set("n", "<leader>uh", function()
+                --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }))
+                -- end, opts)
             end,
         })
 
@@ -120,12 +124,12 @@ return {
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-        vim.keymap.set(
-            "n",
-            "<leader>ce",
-            "<cmd>LspStart emmet_language_server<cr>",
-            { noremap = true, silent = true, desc = "Start emmet_ls" }
-        )
+        -- vim.keymap.set(
+        --     "n",
+        --     "<leader>ce",
+        --     "<cmd>LspStart emmet_language_server<cr>",
+        --     { noremap = true, silent = true, desc = "Start emmet_ls" }
+        -- )
 
         require("mason-lspconfig").setup_handlers({
             function(server_name)

@@ -2,7 +2,6 @@ return {
     "folke/trouble.nvim",
     cmd = { "Trouble" },
     opts = {},
-    -- BUG: some buffers open without number and sign columns
     keys = {
         { "<leader>xd", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
         { "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
