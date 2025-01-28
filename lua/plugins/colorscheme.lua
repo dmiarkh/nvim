@@ -8,6 +8,7 @@ return {
             transparent_background = true,
             integrations = {
                 cmp = true,
+                blink_cmp = true,
                 dashboard = true,
                 gitsigns = true,
                 harpoon = true,

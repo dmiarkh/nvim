@@ -3,7 +3,6 @@ return {
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
         "williamboman/mason-lspconfig.nvim",
         { "antosha417/nvim-lsp-file-operations", opts = {} },
     },
@@ -120,14 +119,6 @@ return {
         })
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-        -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-        -- LSP settings (for overriding per client)
-        local handlers = {
-            ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-            ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-        }
 
         vim.keymap.set(
             "n",
@@ -140,13 +131,11 @@ return {
             function(server_name)
                 lspconfig[server_name].setup({
                     capabilities = capabilities,
-                    handlers = handlers,
                 })
             end,
             ["emmet_language_server"] = function()
                 lspconfig["emmet_language_server"].setup({
                     capabilities = capabilities,
-                    handlers = handlers,
                     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
                     autostart = false,
                 })
@@ -154,7 +143,6 @@ return {
             ["lua_ls"] = function()
                 lspconfig["lua_ls"].setup({
                     capabilities = capabilities,
-                    handlers = handlers,
                     settings = {
                         Lua = {
                             diagnostics = {
