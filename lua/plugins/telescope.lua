@@ -47,7 +47,7 @@ return {
                 prompt_prefix = " ",
                 selection_caret = " ",
                 layout_strategy = "horizontal",
-                layout_config = { prompt_position = "top" },
+                layout_config = { prompt_position = "top", preview_width = 0.6 },
                 sorting_strategy = "ascending",
                 dynamic_preview_title = true,
                 file_ignore_patterns = {
