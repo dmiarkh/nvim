@@ -1,7 +1,9 @@
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
+local set = vim.keymap.set
 
-vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+set("n", "<Esc>", "<cmd>nohlsearch<cr>")
+
+set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- TODO: toggle options
 -- LazyVim.toggle.map("<leader>uf", LazyVim.toggle.format())
@@ -19,43 +21,49 @@ vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", ex
 -- end
 
 -- Quickfix
-vim.keymap.set("n", "<leader>ql", "<cmd>copen<cr>", { desc = "Open quickfix" })
-vim.keymap.set("n", "<leader>qn", "<cmd>cnext<cr>", { desc = "Next quickfix" })
-vim.keymap.set("n", "<leader>qp", "<cmd>cprev<cr>", { desc = "Previous quickfix" })
+set("n", "<leader>ql", "<cmd>copen<cr>", { desc = "Open quickfix" })
+set("n", "<leader>qn", "<cmd>cnext<cr>", { desc = "Next quickfix" })
+set("n", "<leader>qp", "<cmd>cprev<cr>", { desc = "Previous quickfix" })
 
 -- Paste without replacing paste buffer
-vim.keymap.set("v", "p", '"_dP')
+set("v", "p", '"_dP')
 
 -- Move Lines
-vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==")
-vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==")
-vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi")
-vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi")
-vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { silent = true })
-vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { silent = true })
+set("n", "<A-j>", "<cmd>m .+1<cr>==")
+set("n", "<A-k>", "<cmd>m .-2<cr>==")
+set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi")
+set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi")
+set("v", "<A-j>", ":m '>+1<cr>gv=gv", { silent = true })
+set("v", "<A-k>", ":m '<-2<cr>gv=gv", { silent = true })
 
 -- Splits
-vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split vertically" })
-vim.keymap.set("n", "<leader>sx", "<cmd>close<cr>", { desc = "Close split" })
+set("n", "<leader>sv", "<C-w>v", { desc = "Split vertically" })
+set("n", "<leader>sx", "<cmd>close<cr>", { desc = "Close split" })
+
+-- Center the cursor when jumping
+set("n", "<C-D>", "<C-D>zz")
+set("n", "<C-U>", "<C-U>zz")
+set("n", "n", "nzz")
+set("n", "N", "Nzz")
 
 -- Windows
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+set("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 -- Add undo break-points
-vim.keymap.set("i", ",", ",<c-g>u")
-vim.keymap.set("i", ".", ".<c-g>u")
-vim.keymap.set("i", ";", ";<c-g>u")
+set("i", ",", ",<c-g>u")
+set("i", ".", ".<c-g>u")
+set("i", ";", ";<c-g>u")
 
 -- Better indenting
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+set("v", "<", "<gv")
+set("v", ">", ">gv")
 
 -- Commenting
--- vim.keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
--- vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+-- set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+-- set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- NOTE: set root directory after LSP config
 -- https://www.reddit.com/r/neovim/comments/16grktb/what_are_some_better_ways_to_find_the_root/
