@@ -41,8 +41,6 @@ set("n", "<leader>sv", "<C-w>v", { desc = "Split vertically" })
 set("n", "<leader>sx", "<cmd>close<cr>", { desc = "Close split" })
 
 -- Center the cursor when jumping
-set("n", "<C-D>", "<C-D>zz")
-set("n", "<C-U>", "<C-U>zz")
 set("n", "n", "nzz")
 set("n", "N", "Nzz")
 
