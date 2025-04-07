@@ -1,53 +1,70 @@
 return {
-    "saghen/blink.cmp",
-    event = "InsertEnter",
-    dependencies = {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        build = "make install_jsregexp",
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-        end,
-    },
-    version = "*",
-
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
-    opts = {
-        keymap = { preset = "default", ["<C-c>"] = { "cancel", "fallback" } },
-        enabled = function()
-            return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
-                and vim.bo.buftype ~= "prompt"
-                and vim.b.completion ~= false
-        end,
-        completion = {
-            keyword = {
-                range = "full",
-            },
-            menu = {
-                border = "single",
-                draw = {
-                    columns = {
-                        { "label", "label_description", gap = 1 },
-                        { "kind_icon", "kind" },
-                    },
-                },
-            },
-            documentation = {
-                auto_show = true,
-                auto_show_delay_ms = 500,
-                window = { border = "single" },
-            },
-        },
-        signature = { enabled = true, window = { border = "single" } },
-        appearance = {
-            nerd_font_variant = "mono",
-        },
-        snippets = { preset = "luasnip" },
-        sources = {
-            default = { "lsp", "path", "snippets", "buffer" },
-        },
-    },
-    opts_extend = { "sources.default" },
+	"saghen/blink.cmp",
+	version = "*",
+	event = "VeryLazy",
+	dependencies = { "rafamadriz/friendly-snippets" },
+	---@module 'blink.cmp'
+	opts = {
+		enabled = function()
+			return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
+				and vim.bo.buftype ~= "prompt"
+				and vim.b.completion ~= false
+		end,
+		keymap = {
+			preset = "default",
+			["<C-d>"] = { "scroll_documentation_down", "fallback" },
+			["<C-u>"] = { "scroll_documentation_up", "fallback" },
+		},
+		signature = { enabled = true, window = { border = "rounded" } },
+		completion = {
+			keyword = {
+				range = "full",
+			},
+			menu = {
+				border = "rounded",
+				draw = {
+					columns = {
+						{ "kind_icon" },
+						{ "label", "label_description" },
+						{ "kind" },
+					},
+					components = {
+						kind_icon = {
+							text = function(ctx)
+								local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+								return kind_icon
+							end,
+							-- -- Highlights from mini.icons
+							-- highlight = function(ctx)
+							-- 	local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+							-- 	return hl
+							-- end,
+						},
+					},
+				},
+			},
+			documentation = { window = { border = "rounded" } },
+		},
+		appearance = {
+			use_nvim_cmp_as_default = true,
+			nerd_font_variant = "mono",
+		},
+		sources = {
+			default = { "lsp", "path", "snippets", "buffer" },
+		},
+		fuzzy = {
+			implementation = "prefer_rust_with_warning",
+			sorts = {
+				function(a, b)
+					if (a.client_name == nil or b.client_name == nil) or (a.client_name == b.client_name) then
+						return
+					end
+					return b.client_name == "emmet"
+				end,
+				"score",
+				"sort_text",
+			},
+		},
+	},
+	opts_extend = { "sources.default" },
 }

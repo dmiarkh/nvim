@@ -1,4 +1,5 @@
 return {
-    "tpope/vim-surround",
-    event = { "BufReadPre", "BufNewFile" },
+	"kylechui/nvim-surround",
+	event = { "BufReadPre", "BufNewFile" },
+	opts = {},
 }
