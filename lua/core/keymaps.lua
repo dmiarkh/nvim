@@ -3,7 +3,10 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
 vim.keymap.set({ "n", "x" }, "j", "v:count ? 'j' : 'gj'", { desc = "Down", expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "k", "v:count ? 'k' : 'gk'", { desc = "Up", expr = true, silent = true })
 
-vim.keymap.set("n", "<leader>bx", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all buffers but the current one" })
+-- vim.keymap.set("n", "<leader>bx", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all buffers but the current one" })
+vim.keymap.set("n", "<leader>bx", function()
+	Snacks.bufdelete.other()
+end, { desc = "Close all buffers but the current one" })
 vim.keymap.set("n", "<leader>ql", "<cmd>copen<cr>", { desc = "Open quickfix" })
 
 -- Clipboard
