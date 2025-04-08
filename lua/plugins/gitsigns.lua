@@ -62,8 +62,26 @@ return {
 				gs.diffthis("~")
 			end, "Diff This ~")
 			map({ "o", "x" }, "ih", gs.select_hunk, "Select hunk")
-			map("n", "<leader>gl", gs.toggle_current_line_blame, "Toggle blame line")
-			map("n", "<leader>gw", gs.toggle_word_diff, "Toggle word diff")
+			Snacks.toggle({
+				name = "blame line",
+				get = function()
+					return vim.g.blame_line_enabled
+				end,
+				set = function(state)
+					vim.g.blame_line_enabled = state
+					vim.cmd("Gitsigns toggle_current_line_blame")
+				end,
+			}):map("<leader>gl")
+			Snacks.toggle({
+				name = "word diff",
+				get = function()
+					return vim.g.word_diff_enabled
+				end,
+				set = function(state)
+					vim.g.word_diff_enabled = state
+					vim.cmd("Gitsigns toggle_word_diff")
+				end,
+			}):map("<leader>gw")
 		end,
 	},
 }

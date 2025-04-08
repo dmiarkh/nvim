@@ -87,5 +87,3 @@ Snacks.toggle({
 	end,
 }):map("<leader>uf")
 Snacks.toggle.indent():map("<leader>ui")
--- TODO: toggle blame line and possible other stuff
--- chech toggles from lazyvim
