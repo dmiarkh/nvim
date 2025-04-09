@@ -65,6 +65,7 @@ end, { desc = "...", expr = true, silent = true })
 
 -- Toggles
 Snacks.toggle.option("spell", { name = "spell check" }):map("<leader>us")
+Snacks.toggle.option("wrap", { name = "word wrap" }):map("<leader>uw")
 Snacks.toggle.option("rnu", { name = "relative number" }):map("<leader>un")
 Snacks.toggle.option("conceallevel", { name = "conceal level", on = 2, off = 0 }):map("<leader>uc")
 Snacks.toggle({
