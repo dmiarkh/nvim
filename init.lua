@@ -67,6 +67,7 @@ vim.lsp.enable({
 	-- "biome",
 	"css",
 	"emmet",
+	"go",
 	"html",
 	"json",
 	"lua",

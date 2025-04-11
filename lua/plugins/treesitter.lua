@@ -25,6 +25,7 @@ return {
 				"diff",
 				"dockerfile",
 				"gitignore",
+				"go",
 				"graphql",
 				"html",
 				"hyprlang",
