@@ -5,11 +5,6 @@ return {
 	dependencies = { "rafamadriz/friendly-snippets" },
 	---@module 'blink.cmp'
 	opts = {
-		enabled = function()
-			return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
-				and vim.bo.buftype ~= "prompt"
-				and vim.b.completion ~= false
-		end,
 		keymap = {
 			preset = "default",
 			["<C-d>"] = { "scroll_documentation_down", "fallback" },
