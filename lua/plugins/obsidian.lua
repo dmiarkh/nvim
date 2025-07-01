@@ -1,5 +1,4 @@
 return {
-	-- "epwalsh/obsidian.nvim",
 	"obsidian-nvim/obsidian.nvim",
 	version = "*",
 	cmd = "ObsidianNew",
@@ -9,6 +8,7 @@ return {
 	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"saghen/blink.cmp",
 	},
 	opts = {
 		workspaces = {
@@ -22,7 +22,15 @@ return {
 		},
 		completion = {
 			blink = true,
+			min_chars = 2,
 		},
-		-- new_notes_location = "current_dir",
+		new_notes_location = "notes_subdir",
+		note_id_func = function(title)
+			return tostring(os.time()) .. "-" .. title
+		end,
+		wiki_link_func = "use_alias_only",
+		picker = {
+			name = "snacks.pick",
+		},
 	},
 }
