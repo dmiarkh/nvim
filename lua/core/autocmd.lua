@@ -2,7 +2,7 @@
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 	end,
 })
 
@@ -14,6 +14,28 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 			vim.cmd("checktime")
 		end
 	end,
+})
+
+-- Lsp-integrated file renaming for Oil
+vim.api.nvim_create_autocmd("User", {
+	pattern = "OilActionsPost",
+	callback = function(event)
+		if event.data.actions.type == "move" then
+			Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+		end
+	end,
+})
+
+-- Disable spell check for Notes
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = vim.fn.expand("~") .. "/Notes/*.md",
+	command = "set nospell",
+})
+
+-- Enable spell check when leaving Notes
+vim.api.nvim_create_autocmd("BufLeave", {
+	pattern = vim.fn.expand("~") .. "/Notes/*.md",
+	command = "set spell",
 })
 
 -- Resize splits if window got resized
@@ -131,8 +153,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.lsp.buf.hover({ border = "rounded" })
 		end, "Hover")
 		map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
-		map("n", "gd", vim.lsp.buf.definition, "Go to definition")
-		map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+		map("n", "gd", function()
+			Snacks.picker.lsp_definitions()
+		end, "Go to definition")
+		map("n", "gD", function()
+			Snacks.picker.lsp_declarations()
+		end, "Go to declaration")
 		map("n", "gi", function()
 			Snacks.picker.lsp_implementations({ include_current = true })
 		end, "Show LSP implementations")
@@ -144,7 +170,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "<leader>D", function()
 			Snacks.picker.diagnostics_buffer()
 		end, "Show buffer diagnostics")
-		map("n", "gt", vim.lsp.buf.type_definition, "Go to type definition")
+		map("n", "gt", function()
+			Snacks.picker.lsp_type_definitions({ include_current = true })
+		end, "Go to type definition")
 		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
 		map("n", "[d", function()
 			vim.diagnostic.jump({ count = -1, float = true })
