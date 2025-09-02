@@ -3,11 +3,10 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
-		bigfile = { enabled = true },
-		bufdelete = { enabled = true },
-		image = { enabled = true },
+		bigfile = {},
+		bufdelete = {},
+		image = {},
 		indent = {
-			enabled = true,
 			animate = { enabled = false },
 			filter = function(buf)
 				return vim.g.snacks_indent ~= false
@@ -16,10 +15,10 @@ return {
 					and vim.bo[buf].filetype ~= "markdown"
 			end,
 		},
-		input = { enabled = true },
-		notifier = { enabled = true },
-		quickfile = { enabled = true },
-		statuscolumn = { enabled = true },
+		input = {},
+		notifier = {},
+		quickfile = {},
+		statuscolumn = {},
 		toggle = {},
 	},
 	keys = {
@@ -30,6 +29,13 @@ return {
 				Snacks.notifier.show_history()
 			end,
 			desc = "Notification history",
+		},
+		{
+			"<leader>gb",
+			function()
+				Snacks.git.blame_line()
+			end,
+			desc = "Blame line",
 		},
 	},
 }
