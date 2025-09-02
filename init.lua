@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+
 require("core.options")
 
 require("lazy").setup({
@@ -62,18 +63,6 @@ require("lazy").setup({
 require("core.keymaps")
 require("core.autocmd")
 
-vim.lsp.enable({
-	"bash",
-	-- "biome",
-	"css",
-	"emmet",
-	"go",
-	"html",
-	"json",
-	"lua",
-	"tailwindcss",
-	"typescript",
-})
 local icons = {
 	ERROR = " ",
 	WARN = " ",
@@ -118,5 +107,15 @@ vim.diagnostic.config({
 	format = {
 		formatting_options = nil,
 		timeout_ms = nil,
+	},
+})
+
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+		},
 	},
 })
