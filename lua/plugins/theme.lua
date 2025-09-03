@@ -6,15 +6,15 @@ return {
 		require("catppuccin").setup({
 			flavour = "mocha",
 			transparent_background = true,
+			float = {
+				transparent = true,
+			},
+			auto_integrations = true,
 			integrations = {
-				blink_cmp = true,
-				gitsigns = true,
-				-- diffview = true,
-				harpoon = true,
-				markdown = true,
-				mason = true,
-				mini = true,
-				nvim_surround = true,
+				snacks = {
+					enabled = true,
+					indent_scope_color = "mauve",
+				},
 				native_lsp = {
 					enabled = true,
 					underlines = {
@@ -24,15 +24,6 @@ return {
 						information = { "undercurl" },
 					},
 				},
-				semantic_tokens = true,
-				snacks = {
-					enabled = true,
-					indent_scope_color = "mauve",
-				},
-				render_markdown = true,
-				treesitter = true,
-				treesitter_context = true,
-				which_key = true,
 			},
 		})
 		vim.cmd.colorscheme("catppuccin")
