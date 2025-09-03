@@ -1,12 +1,10 @@
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 13
 vim.opt.sidescrolloff = 13
 vim.opt.completeopt = "menu,menuone,noinsert"
--- TODO clear this
--- Popup transparancy
--- vim.opt.pumblend = 0
 vim.opt.showmode = false
 vim.opt.cursorline = true
 vim.opt.shiftwidth = 4 -- Size of an indent
@@ -58,13 +56,3 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.fillchars:append({ fold = " " })
-
-vim.opt.signcolumn = "yes"
--- vim.opt.fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " }
--- vim.opt.foldcolumn = "1"
--- vim.opt.foldlevelstart = 99
--- vim.opt.statuscolumn = "%l%s%C"
--- vim.opt.foldtext =
--- 	[[ (strpart(substitute(getline(v:foldstart), '^\\s*', '', ''), 0, 80) .. '… (' .. (v:foldend - v:foldstart + 1) .. ' lines)') ]]
--- vim.opt.signcolumn = "yes:1"
--- vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
