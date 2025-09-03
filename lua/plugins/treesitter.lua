@@ -49,10 +49,10 @@ return {
 				"tsv",
 				"tsx",
 				"typescript",
-				"vim",
 				"vimdoc",
 				"xml",
 				"yaml",
+				"qmljs",
 			},
 			autoinstall = true,
 			incremental_selection = {
