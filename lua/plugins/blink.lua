@@ -2,8 +2,17 @@ return {
 	"saghen/blink.cmp",
 	version = "*",
 	event = "VeryLazy",
-	dependencies = { "rafamadriz/friendly-snippets" },
-	---@module 'blink.cmp'
+	dependencies = {
+		"L3MON4D3/LuaSnip",
+		version = "v2.*",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+		},
+		build = "make install_jsregexp",
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
+	},
 	opts = {
 		keymap = {
 			preset = "default",
@@ -11,6 +20,7 @@ return {
 			["<C-u>"] = { "scroll_documentation_up", "fallback" },
 		},
 		signature = { enabled = true, window = { border = "rounded" } },
+		snippets = { preset = "luasnip" },
 		completion = {
 			keyword = {
 				range = "full",
@@ -49,16 +59,16 @@ return {
 		},
 		fuzzy = {
 			implementation = "prefer_rust_with_warning",
-			sorts = {
-				function(a, b)
-					if (a.client_name == nil or b.client_name == nil) or (a.client_name == b.client_name) then
-						return
-					end
-					return b.client_name == "emmet"
-				end,
-				"score",
-				"sort_text",
-			},
+			-- sorts = {
+			-- 	function(a, b)
+			-- 		if (a.client_name == nil or b.client_name == nil) or (a.client_name == b.client_name) then
+			-- 			return
+			-- 		end
+			-- 		return b.client_name == "emmet"
+			-- 	end,
+			-- 	"score",
+			-- 	"sort_text",
+			-- },
 		},
 	},
 	opts_extend = { "sources.default" },
