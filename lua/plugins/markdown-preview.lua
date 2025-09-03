@@ -1,9 +1,12 @@
--- NOTE: run :Lazy build markdown-preview.nvim for the first time
 return {
 	"iamcco/markdown-preview.nvim",
 	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-	build = ":call mkdp#util#install()",
+	ft = { "markdown" },
 	keys = {
 		{ "<F5>", "<cmd>MarkdownPreviewToggle<cr>", "Toggle markdown preview" },
 	},
+	build = function()
+		-- run :Lazy build markdown-preview at first launch
+		vim.fn["mkdp#util#install"]()
+	end,
 }
