@@ -3,11 +3,9 @@ return {
 	lazy = false,
 	opts = {
 		explorer = {
-			enabled = true,
 			replace_netrw = true,
 		},
 		picker = {
-			enabled = true,
 			win = {
 				input = {
 					keys = {
@@ -45,6 +43,13 @@ return {
 				Snacks.picker.files()
 			end,
 			desc = "Find files",
+		},
+		{
+			"<leader>fd",
+			function()
+				Snacks.picker.diagnostics()
+			end,
+			desc = "Find diagnostics",
 		},
 		{
 			"<leader>fr",
@@ -175,6 +180,13 @@ return {
 				Snacks.picker.man()
 			end,
 			desc = "Find man pages",
+		},
+		{
+			"<leader>fz",
+			function()
+				Snacks.picker.zoxide()
+			end,
+			desc = "Find zoxide",
 		},
 		-- Explorer
 		{
