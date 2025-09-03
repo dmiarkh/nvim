@@ -1,14 +1,14 @@
 return {
 	"obsidian-nvim/obsidian.nvim",
 	version = "*",
-	cmd = "ObsidianNew",
+	ft = "markdown",
+	cmd = "Obsidian New",
 	event = {
 		"BufReadPre " .. vim.fn.expand("~" .. "/Notes/*.md"),
 		"BufNewFile " .. vim.fn.expand("~" .. "/Notes/*.md"),
 	},
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"saghen/blink.cmp",
+	keys = {
+		{ "<leader>fo", "<cmd>Obsidian search<cr>", desc = "Find obsidian" },
 	},
 	opts = {
 		workspaces = {
@@ -32,5 +32,6 @@ return {
 		picker = {
 			name = "snacks.pick",
 		},
+		legacy_commands = false,
 	},
 }
