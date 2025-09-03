@@ -1,16 +1,17 @@
-local ensure_installed = {
-	"bash-language-server",
-	"biome",
-	"css-lsp",
-	"emmet-language-server",
-	"html-lsp",
-	"json-lsp",
-	"lua-language-server",
-	"tailwindcss-language-server",
-	"typescript-language-server",
-	-- prisma
-	-- graphql
+local lsp_to_install = {
+	"bashls",
+	"cssls",
+	"emmet_language_server",
+	"eslint",
+	"gopls",
+	"html",
+	"jsonls",
+	"lua_ls",
+	"tailwindcss",
+	"ts_ls",
+}
 
+local tools_to_install = {
 	"black",
 	"eslint_d",
 	"isort",
@@ -22,12 +23,15 @@ local ensure_installed = {
 }
 
 return {
-	"williamboman/mason.nvim",
+	"mason-org/mason.nvim",
 	-- NOTE: run :MasonToolsInstall for ensure_installed
 	cmd = "Mason",
 	event = "VeryLazy",
 	build = ":MasonUpdate",
-	dependencies = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+	dependencies = {
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"mason-org/mason-lspconfig.nvim",
+	},
 	config = function()
 		require("mason").setup({
 			ui = {
@@ -40,7 +44,10 @@ return {
 			},
 		})
 		require("mason-tool-installer").setup({
-			ensure_installed = ensure_installed,
+			ensure_installed = tools_to_install,
+		})
+		require("mason-lspconfig").setup({
+			ensure_installed = lsp_to_install,
 		})
 	end,
 }
