@@ -3,7 +3,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
 vim.keymap.set({ "n", "x" }, "j", "v:count ? 'j' : 'gj'", { desc = "Down", expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "k", "v:count ? 'k' : 'gk'", { desc = "Up", expr = true, silent = true })
 
--- vim.keymap.set("n", "<leader>bx", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all buffers but the current one" })
 vim.keymap.set("n", "<leader>bx", function()
 	Snacks.bufdelete.other()
 	vim.notify("Deleted all buffers")
@@ -27,10 +26,6 @@ vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi")
 vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi")
 vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { silent = true })
-
--- -- Splits
--- vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split vertically" })
--- vim.keymap.set("n", "<leader>sx", "<cmd>close<cr>", { desc = "Close split" })
 
 -- Center the cursor when jumping
 vim.keymap.set("n", "n", "nzz")
@@ -59,10 +54,6 @@ vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
 		return "<Tab>"
 	end
 end, { desc = "...", expr = true, silent = true })
-
--- Commenting
--- vim.keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
--- vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- Toggles
 Snacks.toggle.option("spell", { name = "spell check" }):map("<leader>us")
