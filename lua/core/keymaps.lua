@@ -12,7 +12,7 @@ vim.keymap.set("n", "<leader>ql", "<cmd>copen<cr>", { desc = "Open quickfix" })
 
 -- Clipboard
 vim.keymap.set("n", "<leader>y", '"+y$', { desc = "Yank line to clipboard" })
-vim.keymap.set("n", "<leader>Y", 'mz_"+y$`z', { desc = "Yank line to clipboard" })
+vim.keymap.set("n", "<leader>Y", 'm`_"+y$``', { desc = "Yank line to clipboard" })
 vim.keymap.set({ "v", "x" }, "<leader>y", '"+y', { desc = "Yank to clipboard" })
 vim.keymap.set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from the clipboard" })
 vim.keymap.set({ "n", "x" }, "<leader>P", '"+P', { desc = "Paste from the clipboard" })
