@@ -159,7 +159,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "gD", function()
 			Snacks.picker.lsp_declarations()
 		end, "Go to declaration")
-		map("n", "gi", function()
+		map("n", "gri", function()
 			Snacks.picker.lsp_implementations({ include_current = true })
 		end, "Show LSP implementations")
 		map("n", "gr", function()
