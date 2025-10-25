@@ -40,7 +40,6 @@ require("lazy").setup({
 				"getscript",
 				"getscriptPlugin",
 				"gzip",
-				"man",
 				"matchit",
 				"matchparen",
 				"netrw",
