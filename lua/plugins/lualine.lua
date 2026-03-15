@@ -13,7 +13,7 @@ return {
 	end,
 	opts = {
 		options = {
-			theme = "catppuccin",
+			theme = "catppuccin-nvim",
 			globalstatus = vim.o.laststatus == 3,
 			component_separators = { left = "|", right = "|" },
 			section_separators = { left = "", right = "" },
