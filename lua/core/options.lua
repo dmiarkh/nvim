@@ -1,58 +1,59 @@
-vim.opt.termguicolors = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.signcolumn = "yes"
-vim.opt.scrolloff = 13
-vim.opt.sidescrolloff = 13
-vim.opt.completeopt = "menu,menuone,noinsert"
-vim.opt.showmode = false
-vim.opt.cursorline = true
-vim.opt.shiftwidth = 4 -- Size of an indent
-vim.opt.tabstop = 4 -- Number of spaces tabs count for
-vim.opt.softtabstop = 4
-vim.opt.shiftround = true
-vim.opt.autoindent = true
-vim.opt.expandtab = true
-vim.opt.timeoutlen = 400
-vim.opt.synmaxcol = 512
-vim.opt.conceallevel = 2
-vim.opt.confirm = true
-vim.opt.formatoptions = "jcroqlnt"
-vim.opt.grepformat = "%f:%l:%c:%m"
-vim.opt.grepprg = "rg --vimgrep"
-vim.opt.jumpoptions = "view"
-vim.opt.laststatus = 3 -- global statusline
-vim.opt.linebreak = true -- Wrap lines at convenient points
-vim.opt.list = true
-vim.opt.pumheight = 10
+-- TODO: replace with vim.o
+vim.o.termguicolors = true
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = "yes"
+vim.o.scrolloff = 13
+vim.o.sidescrolloff = 13
+vim.o.completeopt = "menu,menuone,noinsert"
+vim.o.showmode = false
+vim.o.cursorline = true
+vim.o.shiftwidth = 4 -- Size of an indent
+vim.o.tabstop = 4 -- Number of spaces tabs count for
+vim.o.softtabstop = 4
+vim.o.shiftround = true
+vim.o.autoindent = true
+vim.o.expandtab = true
+vim.o.timeoutlen = 400
+vim.o.synmaxcol = 512
+vim.o.conceallevel = 2
+vim.o.confirm = true
+vim.o.formatoptions = "jcroqlnt"
+vim.o.grepformat = "%f:%l:%c:%m"
+vim.o.grepprg = "rg --vimgrep"
+vim.o.jumpoptions = "view"
+vim.o.laststatus = 3 -- global statusline
+vim.o.linebreak = true -- Wrap lines at convenient points
+vim.o.list = true
+vim.o.pumheight = 10
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
-vim.opt.smartindent = true
+vim.o.smartindent = true
 vim.opt.spelloptions:append("noplainbuffer")
-vim.opt.splitkeep = "screen"
-vim.opt.undofile = true
-vim.opt.undolevels = 10000
-vim.opt.updatetime = 200
-vim.opt.virtualedit = "block"
-vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
-vim.opt.smoothscroll = true
-vim.opt.breakindent = true
-vim.opt.mouse = "a"
-vim.opt.wrap = false
+vim.o.splitkeep = "screen"
+vim.o.undofile = true
+vim.o.undolevels = 10000
+vim.o.updatetime = 200
+vim.o.virtualedit = "block"
+vim.o.wildmode = "longest:full,full" -- Command-line completion mode
+vim.o.smoothscroll = true
+vim.o.breakindent = true
+vim.o.mouse = "a"
+vim.o.wrap = false
 
 -- Search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.inccommand = "split"
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.inccommand = "split"
 
 -- Splits
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Folds
-vim.opt.foldenable = true
-vim.opt.foldlevel = 99
-vim.opt.foldmethod = "expr"
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = "expr"
 -- default, lsp.foldexpr is used if available
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldtext = ""
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldtext = ""
 vim.opt.fillchars:append({ fold = " " })
