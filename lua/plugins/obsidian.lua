@@ -1,37 +1,36 @@
-return {
-	"obsidian-nvim/obsidian.nvim",
-	version = "*",
-	ft = "markdown",
-	cmd = "Obsidian New",
-	event = {
-		"BufReadPre " .. vim.fn.expand("~" .. "/Notes/*.md"),
-		"BufNewFile " .. vim.fn.expand("~" .. "/Notes/*.md"),
+vim.pack.add({ "https://github.com/obsidian-nvim/obsidian.nvim" })
+
+require("obsidian").setup({
+	workspaces = {
+		{
+			name = "personal",
+			path = "~/Notes/",
+		},
 	},
-	keys = {
-		{ "<leader>fo", "<cmd>Obsidian search<cr>", desc = "Find obsidian" },
+	-- ui = {
+	-- 	enable = false,
+	-- },
+	new_notes_location = "notes_subdir",
+	note_id_func = require("obsidian.builtin").title_id,
+	picker = {
+		name = "snacks.pick",
 	},
-	opts = {
-		workspaces = {
-			{
-				name = "personal",
-				path = "~/Notes/",
-			},
-		},
-		ui = {
-			enable = false,
-		},
-		completion = {
-			blink = true,
-			min_chars = 2,
-		},
-		new_notes_location = "notes_subdir",
-		note_id_func = function(title)
-			return tostring(os.time()) .. "-" .. title
+	legacy_commands = false,
+	frontmatter = {
+		enabled = true,
+		func = function(note)
+			local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+
+			if note.path then
+				local parent = vim.fs.basename(vim.fs.dirname(tostring(note.path))):lower()
+				if parent ~= "." and not vim.tbl_contains(out.tags, parent) then
+					table.insert(out.tags, parent)
+				end
+			end
+
+			return vim.tbl_extend("force", out, note.metadata or {})
 		end,
-		wiki_link_func = "use_alias_only",
-		picker = {
-			name = "snacks.pick",
-		},
-		legacy_commands = false,
 	},
-}
+})
+
+vim.keymap.set("n", "<leader>fo", "<cmd>Obsidian search<cr>", { desc = "Find obsidian" })

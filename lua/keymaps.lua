@@ -3,12 +3,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
 vim.keymap.set({ "n", "x" }, "j", "v:count ? 'j' : 'gj'", { desc = "Down", expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "k", "v:count ? 'k' : 'gk'", { desc = "Up", expr = true, silent = true })
 
-vim.keymap.set("n", "<leader>bx", function()
-	Snacks.bufdelete.other()
-	vim.notify("Deleted all buffers")
-end, { desc = "Close all buffers but the current one" })
-vim.keymap.set("n", "<leader>ql", "<cmd>copen<cr>", { desc = "Open quickfix" })
-
 -- Clipboard
 vim.keymap.set("n", "<leader>y", '"+y$', { desc = "Yank line to clipboard" })
 vim.keymap.set("n", "<leader>Y", 'm`_"+y$``', { desc = "Yank line to clipboard" })
@@ -16,7 +10,6 @@ vim.keymap.set({ "v", "x" }, "<leader>y", '"+y', { desc = "Yank to clipboard" })
 vim.keymap.set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from the clipboard" })
 vim.keymap.set({ "n", "x" }, "<leader>P", '"+P', { desc = "Paste from the clipboard" })
 vim.keymap.set("v", "<leader>p", '"_d"+p', { desc = "Paste from the clipboard" })
-vim.keymap.set("v", "<leader>P", '"_d"+P', { desc = "Paste from the clipboard" })
 vim.keymap.set("v", "p", '"_dP')
 
 -- Move Lines
@@ -46,37 +39,11 @@ vim.keymap.set("i", ";", ";<c-g>u")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
--- vim.snippet
-vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
-	if vim.snippet.active({ direction = -1 }) then
-		return "<Cmd>lua vim.snippet.jump(1)<CR>"
-	else
-		return "<Tab>"
-	end
-end, { desc = "...", expr = true, silent = true })
-
--- Toggles
-Snacks.toggle.option("spell", { name = "spell check" }):map("<leader>us")
-Snacks.toggle.option("wrap", { name = "word wrap" }):map("<leader>uw")
-Snacks.toggle.option("rnu", { name = "relative number" }):map("<leader>un")
-Snacks.toggle.option("conceallevel", { name = "conceal level", on = 2, off = 0 }):map("<leader>uc")
-Snacks.toggle({
-	name = "markdown render",
-	get = function()
-		return vim.g.markdown_render_enabled
-	end,
-	set = function(state)
-		vim.g.markdown_render_enabled = state
-		vim.cmd("RenderMarkdown " .. (state and "enable" or "disable"))
-	end,
-}):map("<leader>um")
-Snacks.toggle({
-	name = "format on save",
-	get = function()
-		return not vim.g.autoformat_disabled
-	end,
-	set = function(state)
-		vim.g.autoformat_disabled = not state
-	end,
-}):map("<leader>uf")
-Snacks.toggle.indent():map("<leader>ui")
+-- -- vim.snippet
+-- vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
+-- 	if vim.snippet.active({ direction = -1 }) then
+-- 		return "<Cmd>lua vim.snippet.jump(1)<CR>"
+-- 	else
+-- 		return "<Tab>"
+-- 	end
+-- end, { desc = "...", expr = true, silent = true })
