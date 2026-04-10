@@ -39,11 +39,16 @@ vim.keymap.set("i", ";", ";<c-g>u")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
--- -- vim.snippet
--- vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
--- 	if vim.snippet.active({ direction = -1 }) then
--- 		return "<Cmd>lua vim.snippet.jump(1)<CR>"
--- 	else
--- 		return "<Tab>"
--- 	end
--- end, { desc = "...", expr = true, silent = true })
+vim.keymap.set("n", "<leader>vu", ":lua vim.pack.update()<cr>", { desc = "Update plugins", silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>vl",
+	":lua vim.pack.update(nil, { offline = true })<cr>",
+	{ desc = "List installed plugins", silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<leader>vr",
+	":lua vim.pack.update(nil, { target = 'lockfile' })<cr>",
+	{ desc = "Restore plugins from the lockfile", silent = true }
+)
