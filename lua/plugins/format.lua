@@ -2,7 +2,6 @@ vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 
 require("conform").setup({
 	formatters_by_ft = {
-		-- TODO: test prettier_d timeout error
 		css = { "prettierd", "prettier", stop_after_first = true },
 		graphql = { "prettierd", "prettier", stop_after_first = true },
 		html = { "prettierd", "prettier", stop_after_first = true },
@@ -24,7 +23,7 @@ require("conform").setup({
 			return
 		end
 		return {
-			timeout_ms = 500,
+			timeout_ms = 1000,
 			lsp_format = "fallback",
 		}
 	end,

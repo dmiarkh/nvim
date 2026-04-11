@@ -83,7 +83,7 @@
       "src": "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
     },
     "obsidian.nvim": {
-      "rev": "1a67e096798d5fda5f36e56d163621126d519613",
+      "rev": "f816915e0bf2f60f44d23a5e3d59658fa8a20094",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "oil.nvim": {
