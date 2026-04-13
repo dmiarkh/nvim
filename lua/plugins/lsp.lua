@@ -52,7 +52,9 @@ vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
 			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
+				library = {
+					vim.env.VIMRUNTIME,
+				},
 			},
 		},
 	},
@@ -253,7 +255,6 @@ local icons = {
 	INFO = " ",
 }
 
--- TODO: show only 1 diagnostic message if many
 vim.diagnostic.config({
 	underline = true,
 	update_in_insert = false,
