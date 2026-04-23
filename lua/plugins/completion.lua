@@ -1,21 +1,3 @@
--- Might need to reinstall luasnip after the first installation
-vim.api.nvim_create_autocmd("PackChanged", {
-	callback = function(ev)
-		local name, kind = ev.data.spec.name, ev.data.kind
-		if name == "LuaSnip" and (kind == "install" or kind == "update") then
-			vim.system({ "make", "install_jsregexp" }, { cwd = ev.data.path }, function(result)
-				vim.schedule(function()
-					if result.code ~= 0 then
-						vim.notify("LuaSnip jsregexp build failed:\n" .. result.stderr, vim.log.levels.ERROR)
-					else
-						vim.notify("LuaSnip jsregexp built successfully", vim.log.levels.INFO)
-					end
-				end)
-			end)
-		end
-	end,
-})
-
 vim.pack.add({
 	{ src = "https://github.com/Saghen/blink.cmp", version = "v1" },
 	"https://github.com/L3MON4D3/LuaSnip",
@@ -83,3 +65,24 @@ require("blink.cmp").setup({
 
 require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
+	callback = function()
+		local pack = vim.iter(vim.pack.get()):find(function(p)
+			return p.spec.name == "LuaSnip"
+		end)
+		if not pack or vim.uv.fs_stat(pack.path .. "/deps/luasnip-jsregexp.so") then
+			return
+		end
+		vim.system({ "make", "install_jsregexp" }, { cwd = pack.path }, function(result)
+			vim.schedule(function()
+				if result.code == 0 then
+					vim.notify("LuaSnip: jsregexp built successfully", vim.log.levels.INFO)
+				else
+					vim.notify("LuaSnip: jsregexp build failed:\n" .. result.stderr, vim.log.levels.ERROR)
+				end
+			end)
+		end)
+	end,
+})
