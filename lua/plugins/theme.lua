@@ -7,10 +7,12 @@ require("catppuccin").setup({
 		transparent = true,
 	},
 	integrations = {
-		snacks = true,
+		blink_cmp = true,
 		harpoon = true,
 		mason = true,
+		mini = true,
 		nvim_surround = true,
+		snacks = true,
 		which_key = true,
 		-- native_lsp = {
 		-- 	enabled = true,
