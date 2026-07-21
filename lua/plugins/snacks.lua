@@ -15,7 +15,7 @@ local config = {
 				and vim.bo[buf].filetype ~= "markdown"
 		end,
 	},
-	input = {},
+	-- input = {},
 	notifier = {},
 	quickfile = {},
 	rename = {},
