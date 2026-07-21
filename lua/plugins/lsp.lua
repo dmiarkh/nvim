@@ -16,7 +16,7 @@ local lsp_to_install = {
 	"lua_ls",
 	"stylua",
 	"tailwindcss",
-	"ts_ls",
+	"tsgo",
 }
 
 local tools_to_install = {
