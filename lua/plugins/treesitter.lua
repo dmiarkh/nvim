@@ -39,7 +39,6 @@ local parsers = {
 	"regex",
 	"scss",
 	"sql",
-	"tmux",
 	"toml",
 	"tsv",
 	"tsx",
