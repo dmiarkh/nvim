@@ -51,6 +51,7 @@ Snacks.toggle.option("wrap", { name = "word wrap" }):map("<leader>uw")
 Snacks.toggle.option("rnu", { name = "relative number" }):map("<leader>un")
 Snacks.toggle.option("conceallevel", { name = "conceal level", on = 2, off = 0 }):map("<leader>uc")
 Snacks.toggle.indent():map("<leader>ui")
+Snacks.toggle.inlay_hints():map("<leader>uh")
 Snacks.toggle({
 	name = "markdown render",
 	get = function()

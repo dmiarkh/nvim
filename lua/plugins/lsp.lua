@@ -60,6 +60,35 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
+vim.lsp.config("ts_ls", {
+	settings = {
+		typescript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+		javascript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+	},
+})
+
 -- LSP progress
 vim.api.nvim_create_autocmd("LspProgress", {
 	buffer = buf,
@@ -190,8 +219,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			map("n", "grc", vim.lsp.document_color.color_presentation, "Change color presentation")
 		end
 
-		if client and client.name == "typescript" then
-			map("n", "grd", function()
+		if client and client.name == "ts_ls" then
+			map("n", "gro", function()
 				client:exec_cmd({
 					title = "Organize imports",
 					command = "_typescript.organizeImports",
