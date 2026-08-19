@@ -50,6 +50,10 @@
       "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
       "src": "https://github.com/catppuccin/nvim"
     },
+    "nvim-colorizer.lua": {
+      "rev": "72a05f62c52241bc7441c820eb53946f92b2e6a4",
+      "src": "https://github.com/catgoose/nvim-colorizer.lua"
+    },
     "nvim-lint": {
       "rev": "5b5b794458b5ff0b17d26c9d7400faaebd00b32d",
       "src": "https://github.com/mfussenegger/nvim-lint"
