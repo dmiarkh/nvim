@@ -6,9 +6,29 @@ map("n", "<leader>e", function()
 end, { desc = "File explorer" })
 
 -- Picker
+map("n", "<leader>fa", function()
+	Snacks.picker.files({
+		hidden = true,
+		ignored = true,
+	})
+end, { desc = "Find all files" })
 map("n", "<leader>ff", function()
-	Snacks.picker.files()
-end, { desc = "Find files" })
+	local is_git = vim.fs.root(0, ".git") ~= nil
+	local source = is_git and "git_smart" or "files"
+	Snacks.picker.smart({
+		multi = { "buffers", "recent", source },
+		format = "file",
+		matcher = {
+			cwd_bonus = true,
+			frecency = true,
+			sort_empty = true,
+		},
+		transform = "unique_file",
+	})
+end, { desc = "Find smart files" })
+map("n", "<leader>fs", function()
+	Snacks.picker.git_status()
+end, { desc = "Find git status" })
 map("n", "<leader>fd", function()
 	Snacks.picker.diagnostics()
 end, { desc = "Find diagnostics" })

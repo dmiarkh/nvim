@@ -17,6 +17,17 @@ local config = {
 	},
 	-- input = {},
 	notifier = {},
+	picker = {
+		sources = {
+			git_smart = {
+				finder = "git_files",
+				format = "file",
+				show_empty = true,
+				untracked = true,
+				submodules = false,
+			},
+		},
+	},
 	quickfile = {},
 	rename = {},
 	statuscolumn = {
