@@ -1,6 +1,7 @@
 vim.pack.add({
 	"https://github.com/catgoose/nvim-colorizer.lua",
 })
+
 require("colorizer").setup({
 	filetypes = {
 		"javascript",
@@ -11,7 +12,7 @@ require("colorizer").setup({
 	display = {
 		mode = "virtualtext",
 		virtualtext = {
-			char = " ",
+			char = "",
 			position = "before",
 		},
 	},
