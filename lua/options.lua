@@ -59,4 +59,6 @@ vim.g.loaded_node_provider = 0
 -- Folding.
 vim.o.foldcolumn = "1"
 vim.o.foldlevelstart = 99
--- vim.o.foldmethod = "expr"
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
+-- vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
