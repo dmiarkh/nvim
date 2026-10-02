@@ -10,7 +10,7 @@ local lsp_to_install = {
 	"cssls",
 	"emmet_language_server",
 	-- "eslint",
-	"gopls",
+	-- "gopls",
 	"html",
 	"jsonls",
 	"lua_ls",
